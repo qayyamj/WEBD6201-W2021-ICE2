@@ -5,33 +5,6 @@
 //Closure - limits scope leak
 
 "use strict";
-class Contact {
-    // Constructor
-    constructor(fullName, contactNumber, string, emailAddress) {
-        this.m_fullName = fullName;
-        this.m_contactNumber = contactNumber;
-        this.m_emailAddress = emailAddress;
-    }
-    // Getters and Setters
-    get fullName() {
-        return this.m_fullName;
-    }
-    get contactNumber() {
-        return this.contactNumber;
-    }
-    get emailAddress() {
-        return this.emailAddress;
-    }
-    set fullName(full_name) {
-        this.m_fullName = full_name;
-    }
-    set contactNumber(contact_number) {
-        this.m_contactNumber = contact_number;
-    }
-    set emailAddress(email_address) {
-        this.m_emailAddress = email_address;
-    }
-}
 
 (function()
 {
@@ -127,11 +100,11 @@ class Contact {
 
         let sendButton = document.getElementById("sendButton");
         sendButton.addEventListener("click", function(event){
-            //event.preventDefault();
+            event.preventDefault();
 
-            console.log(fullName.value);
-            console.log(contactNumber.value);
-            console.log(emailAddress.value);
+          let contact = new Contact(fullName.value, contactNumber.value, emailAddress.value);
+          
+          console.log(contact);
         });
     }
 
