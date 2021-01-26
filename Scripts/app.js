@@ -5,52 +5,33 @@
 //Closure - limits scope leak
 
 "use strict";
-
-let Contact = (function () {
+class Contact {
     // Constructor
-    function Contact(fullName, contactNumber, emailAddress) {
+    constructor(fullName, contactNumber, string, emailAddress) {
         this.m_fullName = fullName;
         this.m_contactNumber = contactNumber;
         this.m_emailAddress = emailAddress;
     }
-
-    Object.defineProperty(Contact.prototype, "fullName", {
-        // Getters and Setters
-        get: function () {
-            return this.m_fullName;
-        },
-        set: function (full_name) {
-            this.m_fullName = full_name;
-        },
-        enumerable: false,
-        configurable: true
-    });
-
-    Object.defineProperty(Contact.prototype, "contactNumber", {
-      // Getters and Setters
-      get: function () {
-          return this.m_contactNumber;
-      },
-      set: function (contact_number) {
-          this.m_contactNumber = contact_number;
-      },
-      enumerable: false,
-      configurable: true
-  });
-
-  Object.defineProperty(Contact.prototype, "emailAddress", {
     // Getters and Setters
-    get: function () {
-        return this.m_emailAddress;
-    },
-    set: function (email_address) {
+    get fullName() {
+        return this.m_fullName;
+    }
+    get contactNumber() {
+        return this.contactNumber;
+    }
+    get emailAddress() {
+        return this.emailAddress;
+    }
+    set fullName(full_name) {
+        this.m_fullName = full_name;
+    }
+    set contactNumber(contact_number) {
+        this.m_contactNumber = contact_number;
+    }
+    set emailAddress(email_address) {
         this.m_emailAddress = email_address;
-    },
-    enumerable: false,
-    configurable: true
-});
-    return Contact;
-}());
+    }
+}
 
 (function()
 {
