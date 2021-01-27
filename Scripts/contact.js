@@ -94,8 +94,8 @@ Email Address:     ${this.emailAddress}`;
         let properties = data.split(",");
 
         this.fullName = properties[0];
-        this.contactNumber = properties[2];
-        this.emailAddress = properties[3];
+        this.contactNumber = properties[1];
+        this.emailAddress = properties[2];
     }
 
 }

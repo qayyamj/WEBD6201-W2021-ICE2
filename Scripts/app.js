@@ -84,14 +84,13 @@
 
     function displayContactList()
     {
-   
 
       if(localStorage.length > 0)
       {
         let contactList = document.getElementById("contactList");
         let data = "";
         
-        for (let index = 1; index < localStorage.length + 1; index ++)
+        for (let index = 1; index < localStorage.length + 1; index++)
         {
           let serializedContact = localStorage.getItem(index.toString());
           let contact = new Contact();
