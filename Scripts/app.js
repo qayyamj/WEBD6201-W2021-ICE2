@@ -5,6 +5,13 @@
 //Closure - limits scope leak
 
 "use strict";
+// // Create an object without a class
+// let myContact = 
+// {
+//   "fullName":"Tom Smith",
+//   "contactNumber":"416-555-5555",
+//   "emailAddress":"tom@example.com"
+// };
 
 (function()
 {
@@ -75,6 +82,33 @@
 
     }
 
+    function displayContactList()
+    {
+   
+
+      if(localStorage.length > 0)
+      {
+        let contactList = document.getElementById("contactList");
+        let data = "";
+        
+        for (let index = 1; index < localStorage.length + 1; index ++)
+        {
+          let serializedContact = localStorage.getItem(index.toString());
+          let contact = new Contact();
+          contact.deserialize(serializedContact);
+  
+          data += `<tr>
+          <th scope="row">${index}</th>
+          <td>${contact.fullName}</td>
+          <td>${contact.contactNumber}</td>
+          <td>${contact.emailAddress}</td>
+        </tr>`
+        }
+        contactList.innerHTML = data;
+      }
+
+    }
+
     function displayContact()
     {
         let messageArea = document.getElementById("messageArea");
@@ -99,18 +133,23 @@
         });
 
         let sendButton = document.getElementById("sendButton");
-        sendButton.addEventListener("click", function(event){
-            event.preventDefault();
+        sendButton.addEventListener("click", function(event)
+        {
+            //event.preventDefault();
 
           let contact = new Contact(fullName.value, contactNumber.value, emailAddress.value);
           
-          console.log(contact.toString());
+          console.log(contact.serialize());
+
+          localStorage.setItem((localStorage.length + 1).toString(), contact.serialize());
         });
     }
 
     function Start()
     {
         console.log("App Started...");
+
+       // console.log(myContact);
 
         switch (document.title) 
         {
@@ -128,6 +167,9 @@
             break;
           case "Contact":
               displayContact();
+            break;
+          case "Contact-List":
+              displayContactList();
             break;
         }
         

@@ -1,7 +1,7 @@
 class Contact 
 {
     // Constructor
-    constructor(fullName, contactNumber, emailAddress) 
+    constructor(fullName="", contactNumber="", emailAddress="") 
     {
         this.m_fullName = fullName;
         this.m_contactNumber = contactNumber;
@@ -49,6 +49,7 @@ class Contact
         this.lastName = names[1];
     }
 
+    /* This method overrides the toString method of the Contact class */
     toString()
     {
         let contactString = `Full Name:         ${this.fullName}
@@ -56,6 +57,45 @@ Contact Number:    ${this.contactNumber}
 Email Address:     ${this.emailAddress}`;
 
         return contactString;
+    }
+/**
+ * This method converts the Contact to a JSON object.
+ * @return {Object}
+ */
+
+    toJSON()
+    {
+        let json = {};
+        json.contactNumber = this.contactNumber;
+        json.fullName = this.fullName;
+        json.emailAddress = this.emailAddress;
+
+        return json;
+    }
+
+    /**
+     * This method serializes the properties into s comma-seperated value string.
+     * @return {string}
+     */
+    serialize()
+    {
+        return `${this.fullName},${this.contactNumber},${this.emailAddress}`;
+    }
+
+    /**
+     * This method takes a comma-seperated string of contact properties and sets the
+     * current contact to these properties.
+     * @param {string} data 
+     * @return {void}
+     */
+    deserialize(data)
+    {
+        // create an array of property data
+        let properties = data.split(",");
+
+        this.fullName = properties[0];
+        this.contactNumber = properties[2];
+        this.emailAddress = properties[3];
     }
 
 }
